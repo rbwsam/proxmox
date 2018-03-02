@@ -11,7 +11,7 @@ func Login(username, password string) error {
 	}
 	body := generateRequestBody(data)
 
-	resp, err := Post("/access/ticket", body)
+	resp, err := post("/access/ticket", body)
 	if err != nil {
 		return err
 	}
