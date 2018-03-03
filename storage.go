@@ -1,42 +1,52 @@
 package proxmox
 
-import (
-	"github.com/rbwsam/proxmox/models"
-)
+type Storage struct {
+	// Required
+	Storage string `json:"storage"`
+	Type    string `json:"type"`
+	// Optional
+	Content  string `json:"content,omitempty"`
+	ThinPool string `json:"thinpool,omitempty"`
+	Digest   string `json:"digest,omitempty"`
+	VGName   string `json:"vgname,omitempty"`
+	Path     string `json:"path,omitempty"`
+}
 
-func GetStorage(storage string) (*models.Storage, error) {
+type StorageList []*Storage
+
+func GetStorage(storage string) (*Storage, error) {
 	pathParams := make(map[string]string)
 	pathParams["storage"] = storage
-	result := &models.StorageResponse{}
+	result := &StorageResponse{}
 	request := client.R()
 	request.SetResult(result)
 	request.SetPathParams(pathParams)
 	_, err := request.Get("/storage/{storage}")
 	if err != nil {
-		return &models.Storage{}, err
+		return &Storage{}, err
 	}
 	return result.Data, nil
 }
 
-func GetStorageList() (models.StorageList, error) {
-	result := &models.StorageListResponse{}
+func GetStorageList() (StorageList, error) {
+	result := &StorageListResponse{}
 	request := client.R()
 	request.SetResult(result)
 	_, err := request.Get("/storage")
 	if err != nil {
-		return models.StorageList{}, err
+		return StorageList{}, err
 	}
 	return result.Data, nil
 }
 
-func GetStorageByType(storageType string) (models.StorageList, error) {
-	result := &models.StorageListResponse{}
+func GetStorageByType(storageType string) (StorageList, error) {
+	result := &StorageListResponse{}
 	request := client.R()
 	request.SetQueryParam("type", storageType)
 	request.SetResult(result)
 	_, err := request.Get("/storage")
 	if err != nil {
-		return models.StorageList{}, err
+		return StorageList{}, err
 	}
 	return result.Data, nil
 }

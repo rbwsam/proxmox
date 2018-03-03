@@ -1,4 +1,4 @@
-package models
+package proxmox
 
 type LoginResponse struct {
 	Data struct {
@@ -7,4 +7,20 @@ type LoginResponse struct {
 		CSRFPreventionToken string                    `json:"CSRFPreventionToken"`
 		Ticket              string                    `json:"ticket"`
 	} `json:"data"`
+}
+
+type NodeListResponse struct {
+	Data NodeList `json:"Data"`
+}
+
+type PoolListResponse struct {
+	Data PoolList `json:"data"`
+}
+
+type StorageListResponse struct {
+	Data StorageList `json:"data"`
+}
+
+type StorageResponse struct {
+	Data *Storage `json:"data"`
 }

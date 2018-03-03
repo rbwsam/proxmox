@@ -1,7 +1,6 @@
 package proxmox
 
 import (
-	"github.com/rbwsam/proxmox/models"
 	"net/http"
 )
 
@@ -10,7 +9,7 @@ func Login(username, password string) error {
 		"username": username,
 		"password": password,
 	}
-	result := &models.LoginResponse{}
+	result := &LoginResponse{}
 
 	request := client.R()
 	request.SetFormData(data)
@@ -20,7 +19,7 @@ func Login(username, password string) error {
 		return err
 	}
 	client.SetCookie(&http.Cookie{
-		Name: "PVEAuthCookie",
+		Name:  "PVEAuthCookie",
 		Value: result.Data.Ticket,
 	})
 	return nil

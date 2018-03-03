@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/rbwsam/proxmox"
 	"os"
-	"fmt"
 )
 
 func main() {
@@ -37,4 +37,10 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%+v\n", pools[0])
+
+	nodes, err := proxmox.GetNodes()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", nodes[0])
 }
