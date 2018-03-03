@@ -13,4 +13,9 @@ func main() {
 		panic(err)
 	}
 
+	_, err = proxmox.GetStorage("nfs")
+
+	if err != nil {
+		panic(err)
+	}
 }

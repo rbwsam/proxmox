@@ -1,22 +1,17 @@
 package proxmox
 
 import (
-	"crypto/tls"
 	"fmt"
-	"net/http"
+	"gopkg.in/resty.v1"
+	"crypto/tls"
 )
 
-var server string
-var cookie *http.Cookie
-var transport *http.Transport
-var client *http.Client
+var client *resty.Client
 
 func Configure(fqdn string, allowInsecure bool) {
-	server = fmt.Sprintf("https://%s:8006/api2/json", fqdn)
-	transport = &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: allowInsecure},
-	}
-	client = &http.Client{
-		Transport: transport,
-	}
+	hostURL := fmt.Sprintf("https://%s:8006/api2/json", fqdn)
+	client = resty.New()
+	client.SetTLSClientConfig(&tls.Config{ InsecureSkipVerify: allowInsecure })
+	client.SetHostURL(hostURL)
+	client.SetRESTMode()
 }
