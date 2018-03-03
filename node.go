@@ -2,13 +2,13 @@ package proxmox
 
 type Node struct {
 	MaxDisk        int64   `json:"maxdisk"`
-	Memory         int64   `json:"mem"`
+	Mem            int64   `json:"mem"`
 	ID             string  `json:"id"`
 	Uptime         int     `json:"uptime"`
 	Disk           int     `json:"disk"`
 	Type           string  `json:"type"`
 	SSLFingerprint string  `json:"ssl_fingerprint"`
-	MaxMemory      int64   `json:"maxmem"`
+	MaxMem         int64   `json:"maxmem"`
 	CPU            float64 `json:"cpu"`
 	Level          string  `json:"level"`
 	MaxCPU         int     `json:"maxcpu"`

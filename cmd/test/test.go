@@ -43,4 +43,10 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%+v\n", nodes[0])
+
+	vms, err := proxmox.GetVirtualMachines(nodes[0].Node)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", vms[0])
 }

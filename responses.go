@@ -24,3 +24,7 @@ type StorageListResponse struct {
 type StorageResponse struct {
 	Data *Storage `json:"data"`
 }
+
+type VirtualMachineListResponse struct {
+	Data VirtualMachineList `json:"Data"`
+}
