@@ -12,7 +12,7 @@ type VirtualMachine struct {
 	Mem       int64   `json:"mem"`
 	MaxDisk   int64   `json:"maxdisk"`
 	NetOut    int64   `json:"netout"`
-	Pid       string  `json:"pid"`
+	PID       string  `json:"pid"`
 	CPU       float64 `json:"cpu"`
 	Name      string  `json:"name"`
 	Template  string  `json:"template"`
